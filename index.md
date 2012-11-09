@@ -1,6 +1,6 @@
 ---
 layout: page
-title:开始使用Jekyll
+title: 开始使用Jekyll
 tagline: Supporting tagline
 ---
 {% include JB/setup %}
