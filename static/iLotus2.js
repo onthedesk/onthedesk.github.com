@@ -24,6 +24,17 @@ $(document).ready(function() {
             this.checked();
         }
     }
+
+    /**
+     * add target attribute for third links
+     */
+
+    iLotus.checkLink = function() {
+        $('.lotus-post a').filter(function() {
+            return this.hostname != window.location.hostname;
+        }).attr('target', '_blank');
+    };
+
     /**
      *  goTop
      */
@@ -185,6 +196,8 @@ $(document).ready(function() {
                 e.stopPropagation();
             });
         }
+
+
     }
     /**
      * iLotus JS init
@@ -194,6 +207,7 @@ $(document).ready(function() {
             iLotus.checkServer.run();
             iLotus.goTop.run();
             iLotus.showImg.run();
+            iLotus.checkLink();
         }
     };
     //run

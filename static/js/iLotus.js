@@ -112,6 +112,17 @@ $(document).ready(function() {
         Version: "1.0",
         Author: "PIZn"
     };
+
+    /**
+     * add target attribute for third links
+     */
+
+    iLotus.checkLink = function() {
+        $('.lotus-post a').filter(function() {
+            return this.hostname != window.location.hostname;
+        }).attr('target', '_blank');
+    };
+
     /**
      *  goTop
      */
@@ -228,6 +239,7 @@ $(document).ready(function() {
         run: function() {
             iLotus.goTop.run();
             iLotus.changeTheme.init();
+            iLotus.checkLink();
         }
     };
     //run
