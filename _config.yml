@@ -47,6 +47,12 @@ description: 前几天在组内的wiki上用markdown写了一些开发过程，�
 url: http://www.xuelu.org
 feed: /atom.xml
 
+#静态资源配置
+static:
+  default: http://www.xuelu.org
+  production: http://www.xuelu.org
+  development: http://localhost:4000
+
 #菜单配置
 nav:
   - text: 首页
