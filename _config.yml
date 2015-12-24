@@ -64,8 +64,8 @@ nav:
     icon: icon-reorder
     class: none
   - text: 关于我
-    url: /contact.html
-    icon: icon-envelope-alt
+    url: /about.html
+    icon: icon-heart
     class: none
 
 page:

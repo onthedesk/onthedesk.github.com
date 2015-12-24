@@ -5,6 +5,12 @@ description:
 keywords:
 ---
 
+{% if jekyll.environment == "development" %}
+{% assign static_url = site.static.development %}
+{% else %}
+{% assign static_url = site.static.default %}
+{% endif %}
+
 <p class="lotus-breadcrub">
     <a href="/index.html" rel="nofollow" rel="nofollow" title="首页">Home</a>
     <span> &gt; </span>
@@ -13,5 +19,6 @@ keywords:
 
 <h1 class="lotus-pagetit">About</h1>
 <article id="about">
-    <p>这里是个人的介绍</p>
+    <p>峰哥</p>
+    <p><img src="{{ static_url }}/assets/images/profile/avatar.jpg" alt="峰哥" width="128px"></p>
 </article>
