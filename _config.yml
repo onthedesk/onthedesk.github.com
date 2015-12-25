@@ -84,3 +84,9 @@ page:
 
 author:
   name: Alfred
+
+JB:
+  comments:
+    provider: disqus
+    disqus:
+      short_name: onthedesk
