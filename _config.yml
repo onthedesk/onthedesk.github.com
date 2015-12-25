@@ -90,3 +90,7 @@ JB:
     provider: disqus
     disqus:
       short_name: onthedesk
+  analytics:
+    provider: google
+    google:
+      tracking_id: UA-16168356-1
