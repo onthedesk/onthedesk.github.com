@@ -1,0 +1,276 @@
+---
+layout: post
+title: 远程连接MySQL数据库
+---
+
+<p>前提是，所连接的mysql服务器，允许你进行远程连接，关于访问权限的更改，将在以后的文章中涉及。<br />
+<br />
+&nbsp;<br />
+<br />
+<strong>mysql</strong>（有时称为&ldquo;终端监视器&rdquo;或只是&ldquo;监视&rdquo;）是一个交互式程序，允许你连接一个MySQL服务器，运行查询并察看结果。<strong>mysql</strong>可以用于批模式：你预先把查询放在一个文件中，然后告诉<strong>mysql</strong>执行文件的内容。<br />
+<br />
+要想查看由<strong>mysql</strong>提供的选择项目表，可以用--help选项来调用：<br />
+<br />
+shell> mysql --help</p><p>Usage: mysql [OPTIONS] [database]<br />
+<br />
+&nbsp; -?, --help &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Display this help and exit.<br />
+<br />
+&nbsp; -I, --help &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Synonym for -?<br />
+<br />
+&nbsp; --auto-rehash &nbsp; &nbsp; &nbsp; Enable automatic rehashing. One doesn't need to use<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'rehash' to get table and field completion, but startup<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; and reconnecting may take a longer time. Disable with<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --disable-auto-rehash.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Defaults to on; use --skip-auto-rehash to disable.)<br />
+<br />
+&nbsp; -A, --no-auto-rehash<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; No automatic rehashing. One has to use 'rehash' to get<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; table and field completion. This gives a quicker start of<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mysql and disables rehashing on reconnect.<br />
+<br />
+&nbsp; --auto-vertical-output<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Automatically switch to vertical output mode if the<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; result is wider than the terminal width.<br />
+<br />
+&nbsp; -B, --batch &nbsp; &nbsp; &nbsp; &nbsp; Don't use history file. Disable interactive behavior.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Enables --silent.)<br />
+<br />
+&nbsp; --character-sets-dir=name<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Directory for character set files.<br />
+<br />
+&nbsp; --column-type-info &nbsp;Display column type information.<br />
+<br />
+&nbsp; -c, --comments &nbsp; &nbsp; &nbsp;Preserve comments. Send comments to the server. The<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default is --skip-comments (discard comments), enable<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; with --comments.<br />
+<br />
+&nbsp; -C, --compress &nbsp; &nbsp; &nbsp;Use compression in server/client protocol.<br />
+<br />
+&nbsp; -#, --debug[=#] &nbsp; &nbsp; This is a non-debug version. Catch this and exit.<br />
+<br />
+&nbsp; --debug-check &nbsp; &nbsp; &nbsp; Check memory and open file usage at exit.<br />
+<br />
+&nbsp; -T, --debug-info &nbsp; &nbsp;Print some debug info at exit.<br />
+<br />
+&nbsp; -D, --database=name Database to use.<br />
+<br />
+&nbsp; --default-character-set=name<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Set the default character set.<br />
+<br />
+&nbsp; --delimiter=name &nbsp; &nbsp;Delimiter to be used.<br />
+<br />
+&nbsp; -e, --execute=name &nbsp;Execute command and quit. (Disables --force and history<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file.)<br />
+<br />
+&nbsp; -E, --vertical &nbsp; &nbsp; &nbsp;Print the output of a query (rows) vertically.<br />
+<br />
+&nbsp; -f, --force &nbsp; &nbsp; &nbsp; &nbsp; Continue even if we get an SQL error.<br />
+<br />
+&nbsp; -G, --named-commands<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Enable named commands. Named commands mean this program's<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; internal commands; see mysql&gt; help . When enabled, the<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; named commands can be used from any line of the query,<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; otherwise only from the first line, before an enter.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Disable with --disable-named-commands. This option is<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; disabled by default.<br />
+<br />
+&nbsp; -i, --ignore-spaces Ignore space after function names.<br />
+<br />
+&nbsp; --init-command=name SQL Command to execute when connecting to MySQL server.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Will automatically be re-executed when reconnecting.<br />
+<br />
+&nbsp; --local-infile &nbsp; &nbsp; &nbsp;Enable/disable LOAD DATA LOCAL INFILE.<br />
+<br />
+&nbsp; -b, --no-beep &nbsp; &nbsp; &nbsp; Turn off beep on error.<br />
+<br />
+&nbsp; -h, --host=name &nbsp; &nbsp; Connect to host.<br />
+<br />
+&nbsp; -H, --html &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Produce HTML output.<br />
+<br />
+&nbsp; -X, --xml &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Produce XML output.<br />
+<br />
+&nbsp; --line-numbers &nbsp; &nbsp; &nbsp;Write line numbers for errors.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Defaults to on; use --skip-line-numbers to disable.)<br />
+<br />
+&nbsp; -L, --skip-line-numbers<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Don't write line number for errors.<br />
+<br />
+&nbsp; -n, --unbuffered &nbsp; &nbsp;Flush buffer after each query.<br />
+<br />
+&nbsp; --column-names &nbsp; &nbsp; &nbsp;Write column names in results.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Defaults to on; use --skip-column-names to disable.)<br />
+<br />
+&nbsp; -N, --skip-column-names<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Don't write column names in results.<br />
+<br />
+&nbsp; --sigint-ignore &nbsp; &nbsp; Ignore SIGINT (CTRL-C).<br />
+<br />
+&nbsp; -o, --one-database &nbsp;Ignore statements except those that occur while the<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default database is the one named at the command line.<br />
+<br />
+&nbsp; -p, --password[=name]<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Password to use when connecting to server. If password is<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; not given it's asked from the tty.<br />
+<br />
+&nbsp; -W, --pipe &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Use named pipes to connect to server.<br />
+<br />
+&nbsp; -P, --port=# &nbsp; &nbsp; &nbsp; &nbsp;Port number to use for connection or 0 for default to, in<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; order of preference, my.cnf, $MYSQL_TCP_PORT,<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; /etc/services, built-in default (3306).<br />
+<br />
+&nbsp; --prompt=name &nbsp; &nbsp; &nbsp; Set the mysql prompt to this value.<br />
+<br />
+&nbsp; --protocol=name &nbsp; &nbsp; The protocol to use for connection (tcp, socket, pipe,<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; memory).<br />
+<br />
+&nbsp; -q, --quick &nbsp; &nbsp; &nbsp; &nbsp; Don't cache result, print it row by row. This may slow<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; down the server if the output is suspended. Doesn't use<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; history file.<br />
+<br />
+&nbsp; -r, --raw &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Write fields without conversion. Used with --batch.<br />
+<br />
+&nbsp; --reconnect &nbsp; &nbsp; &nbsp; &nbsp; Reconnect if the connection is lost. Disable with<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --disable-reconnect. This option is enabled by default.<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Defaults to on; use --skip-reconnect to disable.)<br />
+<br />
+&nbsp; -s, --silent &nbsp; &nbsp; &nbsp; &nbsp;Be more silent. Print results with a tab as separator,<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; each row on new line.<br />
+<br />
+&nbsp; --shared-memory-base-name=name<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Base name of shared memory.<br />
+<br />
+&nbsp; -S, --socket=name &nbsp; The socket file to use for connection.<br />
+<br />
+&nbsp; --ssl &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Enable SSL for connection (automatically enabled with<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; other flags).<br />
+<br />
+&nbsp; --ssl-ca=name &nbsp; &nbsp; &nbsp; CA file in PEM format (check OpenSSL docs, implies<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --ssl).<br />
+<br />
+&nbsp; --ssl-capath=name &nbsp; CA directory (check OpenSSL docs, implies --ssl).<br />
+<br />
+&nbsp; --ssl-cert=name &nbsp; &nbsp; X509 cert in PEM format (implies --ssl).<br />
+<br />
+&nbsp; --ssl-cipher=name &nbsp; SSL cipher to use (implies --ssl).<br />
+<br />
+&nbsp; --ssl-key=name &nbsp; &nbsp; &nbsp;X509 key in PEM format (implies --ssl).<br />
+<br />
+&nbsp; --ssl-verify-server-cert<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Verify server's "Common Name" in its cert against<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; hostname used when connecting. This option is disabled by<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; default.<br />
+<br />
+&nbsp; -t, --table &nbsp; &nbsp; &nbsp; &nbsp; Output in table format.<br />
+<br />
+&nbsp; --tee=name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Append everything into outfile. See interactive help (\h)<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; also. Does not work in batch mode. Disable with<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --disable-tee. This option is disabled by default.<br />
+<br />
+&nbsp; -u, --user=name &nbsp; &nbsp; User for login if not current user.<br />
+<br />
+&nbsp; -U, --safe-updates &nbsp;Only allow UPDATE and DELETE that uses keys.<br />
+<br />
+&nbsp; -U, --i-am-a-dummy &nbsp;Synonym for option --safe-updates, -U.<br />
+<br />
+&nbsp; -v, --verbose &nbsp; &nbsp; &nbsp; Write more. (-v -v -v gives the table output format).<br />
+<br />
+&nbsp; -V, --version &nbsp; &nbsp; &nbsp; Output version information and exit.<br />
+<br />
+&nbsp; -w, --wait &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Wait and retry if connection is down.<br />
+<br />
+&nbsp; --connect-timeout=# Number of seconds before connection timeout.<br />
+<br />
+&nbsp; --max-allowed-packet=#<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The maximum packet length to send to or receive from<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; server.<br />
+<br />
+&nbsp; --net-buffer-length=#<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; The buffer size for TCP/IP and socket communication.<br />
+<br />
+&nbsp; --select-limit=# &nbsp; &nbsp;Automatic limit for SELECT when using --safe-updates.<br />
+<br />
+&nbsp; --max-join-size=# &nbsp; Automatic limit for rows in a join when using<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --safe-updates.<br />
+<br />
+&nbsp; --secure-auth &nbsp; &nbsp; &nbsp; Refuse client connecting to server if it uses old<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (pre-4.1.1) protocol.<br />
+<br />
+&nbsp; --server-arg=name &nbsp; Send embedded server this as a parameter.<br />
+<br />
+&nbsp; --show-warnings &nbsp; &nbsp; Show warnings after every statement.<br />
+<br />
+&nbsp; --plugin-dir=name &nbsp; Directory for client-side plugins.<br />
+<br />
+&nbsp; --default-auth=name Default authentication client-side plugin to use.<br />
+<br />
+&nbsp;<br />
+<br />
+Default options are read from the following files in the given order:<br />
+<br />
+C:\Windows\my.ini C:\Windows\my.cnf C:\my.ini C:\my.cnf D:\Program Files\MySQL\my.ini D:\Program Files\MySQL\my.cnf<br />
+<br />
+The following groups are read: mysql client<br />
+<br />
+The following options may be given as the first argument:<br />
+<br />
+--print-defaults &nbsp; &nbsp; &nbsp; &nbsp;Print the program argument list and exit.<br />
+<br />
+--no-defaults &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Don't read default options from any option file.<br />
+<br />
+--defaults-file=# &nbsp; &nbsp; &nbsp; Only read default options from the given file #.<br />
+<br />
+--defaults-extra-file=# Read this file after the global files are read.</p><p>&nbsp;<br />
+<br />
+以上是在我的命令行下得到的参数。建立远程服务器的连接，我们其实一般只用到，-u 用户名 &nbsp;-p -h 服务器ip -P &nbsp;服务器端口（若为默认的3306，则不用选择端口）<br />
+<br />
+shell> mysql -u -p -h 127.0.0.1 -P 3306</p>
