@@ -1,0 +1,33 @@
+---
+layout: post
+title: Ubuntu上利用IPv6看youtube
+---
+
+<p>哥不是不爱国，哥不是不喜欢和谐社会，哥不是不喜欢和谐的网络，但为了提高哥的英语水平，哥很想上Youtube。But,you know...<br />
+哥身体不算很强壮，但为了翻墙，我日夜锻炼。曾经想过向张生学习，但伟大的Ubuntu告诉我，配置太麻烦，太不稳定。哥怎么办？情急之下，向下一代互联网协议的先驱IPv6求救，还好，伟大的Ubuntu支持这个放在桌面上研究了十几年的协议，哥考试的时候光背她的6条优点，都快吐血了。<br />
+心血没有白费，哥登上了阔别依旧的Youtube账户，下一步哥还要twitter。<br />
+<br />
+呵呵，下面说一下如何通过 ipv6 进行翻墙。目前在Ubuntu10.04下测试成功，希望下面内容对各位有所帮助。<br />
+<!--more--><br />
+1.安装miredo<br />
+请在终端中，执行如下指令：<br />
+sudo apt-get install miredo<br />
+<br />
+2 修改防火墙IPv6设置<br />
+以root权限打开ufw的配置文件: "/etc/default/ufw"，找到"IPV6=no"这一行，将其改为"IPV6=yes"。<br />
+<br />
+3. 修改Hosts文件<br />
+完整的Hosts文件请打开http://docs.google.com/View?id=dfkdmxnt_61d9ck9ffq，将其内容粘贴至"/etc/hosts"文件末尾并保存。<br />
+<br />
+4. 重启网络<br />
+sudo invoke-rc.d networking restart<br />
+<br />
+完成以上步骤，在ubuntu下我们使用Ping6命令测试网络是否已经畅通,可以在终端中输入:<br />
+ping6 -c 3 youtube.com<br />
+<br />
+若出现ping不通情况,首先，请检查防火墙是否允许IPv6 Teredo，在Ubuntu 10.04下，防火墙是默认禁用IPv6 Teredo的，因此会出现执行ping6指令错误的情况()。<br />
+<br />
+我用的Teredo服务器地址为：teredo-debian.remlab.net<br />
+<br />
+下面为翻墙成功截图：<br />
+<a href="http://www.xuelu.org/usr/uploads/2010/07/2209902628.png" title="Screenshot.png" rel="lightbox"><img src="http://www.xuelu.org/usr/uploads/2010/07/2209902628.png" alt="youtube截图" /></a></p>
