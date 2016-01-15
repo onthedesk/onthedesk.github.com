@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 加入Data Science的课程的思考
+title: 加入Data Science课程的思考
 category : data_science
 description: 最近加入了阳志平老师开智学院的数据科学课程，因为比较基础，所用的时间可能不会太多，但是希望借此快速的搭建起整个数据科学的知识框架，并掌握一些工具包。
 tags : [数据科学]
