@@ -49,7 +49,9 @@ tags : [技术]
 		rm -rf repo.git
 	
 
-参考:
+参考:  
+
 [^1]: https://help.github.com/articles/changing-author-info/
 [^2]: https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/
 [^3]: http://blog.csdn.net/agul_/article/details/7843678
+
