@@ -49,6 +49,31 @@ Anaconda Cloud上有pypi的镜像大约100G左右。
 
 图中实现了，让python能够通过代理来访问yahoo财经数据，当然，可以编写规则，自定义IP、域名、端口等。
 
+补充：  
+感谢[@Alan Lai](https://github.com/wp-lai)赖博士提醒，还有另外一个可以方便的在终端使用代理的工具proxychains
+
+#### 利用proxychains在终端使用socks5代理
+##### 安装：
+
+		git clone https://github.com/rofl0r/proxychains-ng.git
+		cd proxychains-ng
+		./configure
+		make && make install
+		cp ./src/proxychains.conf /etc/proxychians.conf
+		cd .. && rm -rf proxychains-ng
+		
+##### 编辑proxychains配置
+
+		vim /etc/proxychains.conf
+		
+##### 修改socks4端口
+
+		socks5  127.0.0.1 8018  //8018改为你自己的端口
+		
+##### 使用
+	
+		proxychains4 curl http://www.youtube.com
+		
 注释：
 
 [^1]: seaborn,一个基于matplotlib的数据可视化库,[http://web.stanford.edu/~mwaskom/software/seaborn/](http://web.stanford.edu/~mwaskom/software/seaborn/)
