@@ -22,3 +22,7 @@ tags : [随笔]
 
 说了那么多，忘了自我介绍了，我是岛，峰哥记忆里的岛。最后，感谢峰哥让我出镜。
 
+
+<audio src="http://touzila.b0.upaiyun.com/xuelu/O%20Tejo.mp3" loop="loop" autoplay="true"></audio>
+
+
