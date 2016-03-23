@@ -6,7 +6,7 @@ description: 沃顿商学院的Christian Terwiesch教授，曾对47名沃顿商�
 tags : [随笔,每日寄语,每日学习]
 ---
 
-![]({{ static_url }}/assets/images/post/20150427.jpg)
+![](/assets/images/post/20150427.jpg)
 
 西澳大利亚著名景点 尖峰石阵 by [ivanbai](http://ivanbai.tuchong.com?ref=www.xuelu.org/)
 
