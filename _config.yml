@@ -50,7 +50,7 @@ feed: /atom.xml
 #静态资源配置
 static:
   default: http://onthedesk.github.io
-  production: http://onthedesk.github.io
+  production: http://www.xuelu.org
   development: http://127.0.0.1:4000
 
 #菜单配置
