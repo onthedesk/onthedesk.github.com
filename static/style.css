@@ -601,7 +601,6 @@ h1, h2, h3, h4, h5, h6{ font-weight: 500; font-weight: 700\9; color:#333; }
 
 .lotus-post img {
     max-width: 640px;
-    width:expression(this.width>640?"640px":this.width+"px");
 }
 
 .lotus-post img:hover {
@@ -828,6 +827,10 @@ h1, h2, h3, h4, h5, h6{ font-weight: 500; font-weight: 700\9; color:#333; }
     .iLight .lotus-nav ul li { border-top: 0; }
     .lotus-breadcrub {
         padding-top: 10px;
+    }
+
+    .lotus-post img {
+        max-width: 320px;
     }
 }
 /*
