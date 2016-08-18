@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 未来 
+title: 未来，七年 
 category : blog  
 description: 自由了一年了。接下来，为了获得更长久，更稳定的自由，我要拥抱我的未来了。
 tags : [随笔]
@@ -20,7 +20,7 @@ tags : [随笔]
 
 为了不再有种突入起来感，我决定主动规划一次Gap Year。以过往的经历来看，自己向往的事情，基本上都已实现，虽然过程可能会有些曲折，但结果依然很美好。休息的日子里，自己开始了系统提升自己的资产增值能力，而且选的是一条非常间接的路，系统学习CFA、FRM，乃至数学等基础知识。这也是自己一贯的打法，通过夯实基础去应对变化的一切。七年，和上次一样的时间，我倒要看看自己是否能够再次重现辉煌。
 
-你好，未来。
+你好，未来，七年。
 
 <audio src="http://touzila.b0.upaiyun.com/xuelu/River%20Flows%20In%20You-Yiruma.mp3" loop="loop" autoplay="true"></audio>
 
