@@ -68,7 +68,7 @@ Anaconda Cloud上有pypi的镜像大约100G左右。
 		cd proxychains-ng
 		./configure
 		make && make install
-		cp ./src/proxychains.conf /etc/proxychians.conf
+		cp ./src/proxychains.conf /etc/proxychains.conf
 		cd .. && rm -rf proxychains-ng
 		
 ##### 编辑proxychains配置
