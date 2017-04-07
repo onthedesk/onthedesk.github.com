@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: ARPM Bootcamp侧记@上海
