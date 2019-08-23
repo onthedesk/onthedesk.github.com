@@ -3,9 +3,9 @@
   "data": {
     "background_path": "",
     "music": {
-      "audio": "FiCGr9VHJ_WLEVR00T4BThv-s5m-.mp3",
-      "close_img": "http://qnm.hunliji.com/o_1c539q18d1171ksr1oo413pc1lqb13.png",
-      "img": "http://qnm.hunliji.com/o_1c539puflvh712ak12v91a341g00u.png"
+      "audio": "c39172e2008ff93dc5ff306e0f1396b4.mp3",
+      "close_img": "images/o_1c534k71bunbnpkmqmpvdgggs.jpg",
+      "img": "images/o_1c539puflvh712ak12v91a341g00u.png"
     },
     "page": [
       {
@@ -2011,7 +2011,7 @@
               "rotate": "",
               "width": "362",
               "x": "58",
-              "y": "273",
+              "y": "201",
               "z_order": "3"
             },
             {

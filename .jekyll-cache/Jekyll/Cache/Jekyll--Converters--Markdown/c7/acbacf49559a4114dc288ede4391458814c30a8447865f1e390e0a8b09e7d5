@@ -1,0 +1,66 @@
+I"P<p>最近时间相对自由，所以blog更新的多一些，github上的Contributions终于显得不那么空洞了，但是因为从公司出来之后，在修改git全局的email时手误了。将user.email设置成了–get。这下就导致，github不能在profile中显示我的提交记录，为了满足一下自己的虚荣心，就前去折腾了一下。当然，官方文档永远是第一手资料。官方<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>提供了scripts可以很方便的进行修改。而且不会走弯路…</p>
+
+<p>在修改成正确的user.email之前，你可能需要知道历史提交中的用户信息，如果是github的话，可以使用在commit URL后面添加.patch后缀的方式进行查看，详见<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>。</p>
+
+<ol>
+  <li>
+    <p>临时创建一个新的clone(git clone的三种方式<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup>)</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone --bare https://github.com/user/repo.git
+ cd repo.git
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>运行下面的脚本<br />
+ 需要将 OLD_EMAIL，CORRECT_NAME，CORRECT_EMAIL替换成你想要查找和替换的值</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">#!/bin/sh</span>
+ git filter-branch <span class="nt">--env-filter</span> <span class="s1">'
+ OLD_EMAIL="your-old-email@example.com"
+ CORRECT_NAME="Your Correct Name"
+ CORRECT_EMAIL="your-correct-email@example.com"
+ if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+ then
+ 		export GIT_COMMITTER_NAME="$CORRECT_NAME"
+ 		export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+ fi
+ if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+ then
+ 		export GIT_AUTHOR_NAME="$CORRECT_NAME"
+ 		export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+ fi
+ '</span> <span class="nt">--tag-name-filter</span> <span class="nb">cat</span> <span class="nt">--</span> <span class="nt">--branches</span> <span class="nt">--tags</span>
+</code></pre></div>    </div>
+  </li>
+  <li>查看新的git history是否有错误信息</li>
+  <li>
+    <p>将正确的history提交到github</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git push --force --tags origin 'refs/heads/*'
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>清除临时创建的文件</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> cd ..
+ rm -rf repo.git
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>参考:</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>https://help.github.com/articles/changing-author-info/ <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>https://help.github.com/articles/why-are-my-contributions-not-showing-up-on-my-profile/ <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>http://blog.csdn.net/agul_/article/details/7843678 <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+:ET

@@ -101,6 +101,10 @@ boot.prototype = function () {
       }
     })
   }
+  // 宾客回复
+  ajax_reply = function () {
+    console.log(arguments)
+  }
   init = function () {
     var $this = this,
       _share = {},
@@ -831,7 +835,7 @@ boot.prototype = function () {
             }
             $this.addStyle(obj, animateName)
             _ele += '<div ' + infFun + ' class="animated ani_' + obj.page_id + '_' + obj.id + '" style="' + style + '">\
-                      ' + (obj.type == 'map' ? '<img class="dwIcon" src="http://qnm.hunliji.com/o_1blaaggv063m34kok21s8k1irnc.png"><div class="navigation" style="position: absolute; width: ' + 100 / $this.UI_WIDTH * $this.width + 'px; height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; right: 0; top:0; background: #7c7c7c; opacity: 0.6; color: white;font-size: ' + 28 / $this.UI_WIDTH * $this.width + 'px;line-height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; text-align: center; border-bottom-left-radius: ' + 5 / $this.UI_WIDTH * $this.width + 'px;">导航</div>' : '') + '\
+                      ' + (obj.type == 'map' ? '<img class="dwIcon" src="images/o_1blaaggv063m34kok21s8k1irnc.png"><div class="navigation" style="position: absolute; width: ' + 100 / $this.UI_WIDTH * $this.width + 'px; height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; right: 0; top:0; background: #7c7c7c; opacity: 0.6; color: white;font-size: ' + 28 / $this.UI_WIDTH * $this.width + 'px;line-height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; text-align: center; border-bottom-left-radius: ' + 5 / $this.UI_WIDTH * $this.width + 'px;">导航</div>' : '') + '\
                       <img style="' + obj.mask + ';width:' + _width + ';height:' + _height + ';margin-left:-' + _marginLeft + 'px" class="pageImg ' + (obj.type == 'map' ? 'mapSeat' : '') + '" type="' + obj.type + '" page_id="' + obj.page_id + '" id="' + obj.id + '" style="' + bgImg + '" src="' + a.img + '" />\
                   </div>'
           }
@@ -910,15 +914,17 @@ boot.prototype = function () {
     obj.w = 686;
     obj.h = 386;
     obj.b = 132;
+    boj.x = '39.908780',
+    obj.y = '116.409270',
     var _div = document.createElement('div');
     _div.setAttribute('id', 'map');
     _div.setAttribute('class', 'animated fadeIn');
     _div.style.bottom = obj.b / this.UI_WIDTH * this.width + 'px';
     _div.style.width = obj.w / this.UI_WIDTH * this.width + 'px';
-    var _mapSrc = 'http://qnm.hunliji.com/o_1bkdrc3lf1jtje4l18a716qv1iukc.png';
+    var _mapSrc = 'images/o_1bkdrc3lf1jtje4l18a716qv1iukc.png';
     $this.srcMap = _mapSrc;
-    var _addr = ' 和  诚挚邀请';
-    $this.mapUrl = '//apis.map.qq.com/tools/poimarker?type=0&marker=coord:' + obj.x + ',' + obj.y + ';coordtype:3;title:杭州婚礼纪;addr:' + _addr + '&key=GMZBZ-ZCD3U-GY3VD-4PJK3-BRTK3-SQFWZ&referer=hunliji'
+    var _addr = '北京市东城区东长安街33号北京饭店诺金';
+    $this.mapUrl = '//apis.map.qq.com/tools/poimarker?type=0&marker=coord:' + obj.x + ',' + obj.y + ';coordtype:3;title:赵峰王一雪婚礼;addr:' + _addr + '&key=2XHBZ-5BDWW-TP4RT-OGP73-2ZCK3-LQBV2&referer=wedding'
     var _animateIcon = document.createElement('div');
     _animateIcon.setAttribute('id', 'updownIcon');
     _animateIcon.style.bottom = (160 / this.UI_WIDTH * this.width + 34) + 'px';
@@ -1636,6 +1642,7 @@ boot.prototype = function () {
     addStyleNode: addStyleNode,
     createBtn:createBtn,
     ajax_info: ajax_info,
+    ajax_reply: ajax_reply,
     init: init, //初始化
     get_infinite: get_infinite,
     loadAnimate: loadAnimate,
