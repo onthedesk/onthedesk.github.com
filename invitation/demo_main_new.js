@@ -914,8 +914,8 @@ boot.prototype = function () {
     obj.w = 686;
     obj.h = 386;
     obj.b = 132;
-    boj.x = '39.908780',
-    obj.y = '116.409270',
+    boj.x = '39.908780';
+    obj.y = '116.409270';
     var _div = document.createElement('div');
     _div.setAttribute('id', 'map');
     _div.setAttribute('class', 'animated fadeIn');
