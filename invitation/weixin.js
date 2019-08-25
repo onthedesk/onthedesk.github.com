@@ -16,6 +16,38 @@ $(document).ready(function() {
         timestamp: config.timestamp,
         jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
       });
+
+        // 分享文案和图标
+
+
+      // 分享给朋友
+      wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
+          wx.updateAppMessageShareData({ 
+              title: '赵峰&王一雪婚礼邀请函', // 分享标题
+              desc: '邀请您和家人于10月27日，在北京饭店诺金，参加赵峰和王一雪的婚礼', // 分享描述
+              link: 'https://weixin.youheng-inc.com/invitation/index.html?src=friend', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
+              success: function () {
+                // 设置成功
+                console.log(arguments)
+                alert(arguments)
+              }
+          })
+      });
+
+      // 分享到朋友圈
+      wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
+          wx.updateTimelineShareData({ 
+              title: '赵峰&王一雪婚礼邀请函', // 分享标题
+              desc: '邀请您和家人于10月27日，在北京饭店诺金，参加赵峰和王一雪的婚礼', // 分享描述
+              link: 'https://weixin.youheng-inc.com/invitation/index.html?src=circle', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+              imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
+              success: function () {
+                // 设置成功
+                alert(arguments)
+              }
+          })
+      });
     }
   })
 
@@ -28,35 +60,6 @@ wx.ready(function() {
     document.getElementById('playMusic').play();
 });
 
-// 分享文案和图标
-
-
-// 分享给朋友
-wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
-    wx.updateAppMessageShareData({ 
-        title: '赵峰&王一雪婚礼邀请函', // 分享标题
-        desc: '邀请您和家人于10月27日，在北京饭店诺金，参加赵峰和王一雪的婚礼', // 分享描述
-        link: 'https://weixin.youheng-inc.com/invitation/index.html?src=friend', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
-        success: function () {
-          // 设置成功
-          console.log(arguments)
-        }
-    })
-});
-
-// 分享到朋友圈
-wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
-    wx.updateTimelineShareData({ 
-        title: '赵峰&王一雪婚礼邀请函', // 分享标题
-        desc: '邀请您和家人于10月27日，在北京饭店诺金，参加赵峰和王一雪的婚礼', // 分享描述
-        link: 'https://weixin.youheng-inc.com/invitation/index.html?src=circle', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-        imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
-        success: function () {
-          // 设置成功
-        }
-    })
-});
 
 // 是否在小程序环境
 
