@@ -6,7 +6,7 @@ wx.config({
     nonceStr:"oPKX0W4P1ucph0Y",
     signature:"137334c09ec4e2bc2e33212172b099aef891e942",
     timestamp:1566693144,
-    jsApiList: []
+    jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
 });
 
 // 音乐自动播放
@@ -27,6 +27,7 @@ wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
         imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
         success: function () {
           // 设置成功
+          console.log(arguments)
         }
     })
 });
