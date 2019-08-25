@@ -9,7 +9,7 @@ $(document).ready(function() {
         var config = res.data
         wx.config({
         // 配置信息, 即使不正确也能使用 wx.ready
-        debug: true,
+        debug: false,
         appId: config.appId,
         nonceStr: config.nonceStr,
         signature: config.signature,
@@ -29,8 +29,7 @@ $(document).ready(function() {
               imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
               success: function () {
                 // 设置成功
-                console.log(arguments)
-                alert(arguments)
+                // alert(arguments)
               }
           })
       });
@@ -44,7 +43,7 @@ $(document).ready(function() {
               imgUrl: 'https://weixin.youheng-inc.com/invitation/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
               success: function () {
                 // 设置成功
-                alert(arguments)
+                // alert(arguments)
               }
           })
       });
