@@ -1,13 +1,26 @@
 // weixin.js 实现微信相关业务
-wx.config({
-    // 配置信息, 即使不正确也能使用 wx.ready
-    debug: false,
-    appId:"wx1f9dc3bb244623df",
-    nonceStr:"oPKX0W4P1ucph0Y",
-    signature:"137334c09ec4e2bc2e33212172b099aef891e942",
-    timestamp:1566693144,
-    jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
-});
+
+$(document).ready(function() {
+
+  $.ajax({
+    url: "https://weixin.youheng-inc.com/api/v1/wechat/jsapi_invitation" + "?url=" + url: encodeURIComponent(location.href.split("#")[0]),
+    type: 'get',
+    success: function(res){
+        var config = res.data
+        wx.config({
+        // 配置信息, 即使不正确也能使用 wx.ready
+        debug: false,
+        appId: config.appId,
+        nonceStr: config.nonceStr,
+        signature: config.signature,
+        timestamp: config.timestamp,
+        jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
+      });
+    }
+  })
+
+})
+
 
 // 音乐自动播放
 
