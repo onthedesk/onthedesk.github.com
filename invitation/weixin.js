@@ -3,7 +3,7 @@
 $(document).ready(function() {
 
   $.ajax({
-    url: "https://weixin.youheng-inc.com/api/v1/wechat/jsapi_invitation" + "?url=" + encodeURIComponent(location.href.split("#")[0]),
+    url: "/api/v1/wechat/jsapi_invitation" + "?url=" + encodeURIComponent(location.href.split("#")[0]),
     type: 'get',
     success: function(res){
         var config = res.data
