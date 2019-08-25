@@ -2,10 +2,10 @@
 wx.config({
     // 配置信息, 即使不正确也能使用 wx.ready
     debug: false,
-    appId: 'wx1f9dc3bb244623df',
-    timestamp: 1,
-    nonceStr: '',
-    signature: '',
+    appId:"wx1f9dc3bb244623df",
+    nonceStr:"oPKX0W4P1ucph0Y",
+    signature:"137334c09ec4e2bc2e33212172b099aef891e942",
+    timestamp:1566693144,
     jsApiList: []
 });
 
