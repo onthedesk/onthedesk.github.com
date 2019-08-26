@@ -923,7 +923,7 @@ boot.prototype = function () {
     _div.style.width = obj.w / this.UI_WIDTH * this.width + 'px';
     var _mapSrc = 'images/o_1bkdrc3lf1jtje4l18a716qv1iukc.png';
     $this.srcMap = _mapSrc;
-    var _addr = '北京市东城区东长安街33号北京饭店诺金';
+    var _addr = '北京市东城区东长安街33号北京饭店B座1层';
     $this.mapUrl = '//apis.map.qq.com/tools/poimarker?type=0&marker=coord:' + obj.x + ',' + obj.y + ';coordtype:3;title:赵峰王一雪婚礼;addr:' + _addr + '&key=2XHBZ-5BDWW-TP4RT-OGP73-2ZCK3-LQBV2&referer=wedding'
     var _animateIcon = document.createElement('div');
     _animateIcon.setAttribute('id', 'updownIcon');

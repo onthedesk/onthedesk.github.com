@@ -63,23 +63,23 @@ wx.ready(function() {
 // 是否在小程序环境
 
 wx.miniProgram.getEnv(function(res) {
+  $this = this
+  var obj = {};
+  obj.x = '39.908780';
+  obj.y = '116.409270';
+  var _addr = '北京市东城区东长安街33号北京饭店B座1层';
+  $this.mapUrl = '//apis.map.qq.com/tools/poimarker?type=0&marker=coord:' + obj.x + ',' + obj.y + ';coordtype:3;title:赵峰王一雪婚礼;addr:' + _addr + '&key=2XHBZ-5BDWW-TP4RT-OGP73-2ZCK3-LQBV2&referer=wedding'
+
   if (res.miniprogram) {
+
   	// 小程序中的逻辑
 
-   $(document).on('touchstart', '.navigation', function () {
-      if ($this.type) {
-        return false
-      }
-      wx.miniProgram.navigateTo({url: '/pages/map/map'})
-    })
-    $(document).on('touchstart', '.dwIcon', function () {
-      if ($this.type) {
-        return false
-      }
-      wx.miniProgram.navigateTo({url: '/pages/map/map'})
-    })
-
-
+  $(document).on('touchstart', '.navigation', function () {
+    wx.miniProgram.navigateTo({url: '/pages/map/map'})
+  })
+  $(document).on('touchstart', '.dwIcon', function () {
+    wx.miniProgram.navigateTo({url: '/pages/map/map'})
+  })
 
   } else {
   	// 网页的逻辑
