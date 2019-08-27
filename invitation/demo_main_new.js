@@ -104,13 +104,15 @@ boot.prototype = function () {
   // 宾客回复
   ajax_reply = function (data) {
     $.ajax({
-      url: '/api/v1/invitation/reply',
-      data: {
+      url: '/api/v1/wechat/reply_invitation',
+      data: JSON.stringify({
         name: data.name,
         count: data.count,
         state: data.state
-      },
-      type: 'post',
+      }),
+      dataType: 'json',
+      contentType: 'application/json',
+      type: 'POST',
       success: function(res) {
         console.log(res)
       }
