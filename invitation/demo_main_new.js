@@ -102,8 +102,19 @@ boot.prototype = function () {
     })
   }
   // 宾客回复
-  ajax_reply = function () {
-    console.log(arguments)
+  ajax_reply = function (data) {
+    $.ajax({
+      url: '/api/v1/invitation/reply',
+      data: {
+        name: data.name,
+        count: data.count,
+        state: data.state
+      },
+      type: 'post',
+      success: function(res) {
+        console.log(res)
+      }
+    })
   }
   init = function () {
     var $this = this,
@@ -236,18 +247,6 @@ boot.prototype = function () {
     })
     $(document).on('touchstart', '.noVideo', function () {
       location.reload()
-    })
-    $(document).on('touchstart', '.navigation', function () {
-      if ($this.type) {
-        return false
-      }
-      location.href = $this.mapUrl
-    })
-    $(document).on('touchstart', '.dwIcon', function () {
-      if ($this.type) {
-        return false
-      }
-      location.href = $this.mapUrl
     })
     this.get_infinite()
   }
