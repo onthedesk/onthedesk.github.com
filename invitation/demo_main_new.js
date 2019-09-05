@@ -108,7 +108,7 @@ boot.prototype = function () {
       data: JSON.stringify({
         name: data.name,
         count: data.count,
-        state: data.state
+        state: data.state ? data.state : 0
       }),
       dataType: 'json',
       contentType: 'application/json',
@@ -881,7 +881,7 @@ boot.prototype = function () {
               }
               $this.addStyle(obj, animateName)
               _ele += '<div ' + infFun + ' class="animated ani_' + obj.page_id + '_' + obj.id + '" style="' + style + '">\
-                      ' + (obj.type == 'map' ? '<img class="dwIcon" src="http://qnm.hunliji.com/o_1blaaggv063m34kok21s8k1irnc.png"><div class="navigation" style="position: absolute; width: ' + 100 / $this.UI_WIDTH * $this.width + 'px; height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; right: 0; top:0; background: #7c7c7c; opacity: 0.6; color: white;font-size: ' + 28 / $this.UI_WIDTH * $this.width + 'px;line-height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; text-align: center; border-bottom-left-radius: ' + 5 / $this.UI_WIDTH * $this.width + 'px;">导航</div>' : '') + '\
+                      ' + (obj.type == 'map' ? '<img class="dwIcon" src="images/o_1blaaggv063m34kok21s8k1irnc.png"><div class="navigation" style="position: absolute; width: ' + 100 / $this.UI_WIDTH * $this.width + 'px; height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; right: 0; top:0; background: #7c7c7c; opacity: 0.6; color: white;font-size: ' + 28 / $this.UI_WIDTH * $this.width + 'px;line-height: ' + 56 / $this.UI_WIDTH * $this.width + 'px; text-align: center; border-bottom-left-radius: ' + 5 / $this.UI_WIDTH * $this.width + 'px;">导航</div>' : '') + '\
                       <img style="' + obj.mask + ';width:' + _width + ';height:' + _height + ';margin-left:-' + _marginLeft + 'px" class="pageImg ' + (obj.type == 'map' ? 'mapSeat' : '') + '" type="' + obj.type + '" page_id="' + obj.page_id + '" id="' + obj.id + '" style="' + bgImg + '" src="' + a.img + '" />\
                   </div>'
             }
