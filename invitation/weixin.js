@@ -24,7 +24,7 @@ $(document).ready(function() {
       wx.ready(function () {   //需在用户可能点击分享按钮前就先调用
           wx.updateAppMessageShareData({ 
               title: '赵峰&王一雪婚礼请柬', // 分享标题
-              desc: '邀请您和家人于10月27日光临北京饭店参加赵峰和王一雪的婚礼。', // 分享描述
+              desc: '邀请您和家人于10月27日光临北京饭店参加赵峰和王一雪的婚礼', // 分享描述
               link: 'https://weixin.youheng-inc.com/invitation/index.html?src=friend', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
               imgUrl: 'https://invitation.youheng-inc.com/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
               success: function () {
@@ -38,7 +38,7 @@ $(document).ready(function() {
       wx.ready(function () {      //需在用户可能点击分享按钮前就先调用
           wx.updateTimelineShareData({ 
               title: '赵峰&王一雪婚礼请柬', // 分享标题
-              desc: '邀请您和家人于10月27日光临北京饭店参加赵峰和王一雪的婚礼。', // 分享描述
+              desc: '邀请您和家人于10月27日光临北京饭店参加赵峰和王一雪的婚礼', // 分享描述
               link: 'https://weixin.youheng-inc.com/invitation/index.html?src=circle', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
               imgUrl: 'https://invitation.youheng-inc.com/images/o_1c53742l51g721o5d12lb1d5812dvqe.jpg', // 分享图标
               success: function () {
