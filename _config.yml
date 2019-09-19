@@ -21,7 +21,7 @@ future:       true
 unpublished:  false
 
 # plugins
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 
 # Conversion
 markdown:     kramdown
