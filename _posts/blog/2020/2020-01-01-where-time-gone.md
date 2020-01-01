@@ -22,7 +22,7 @@ tags : [时间,随笔]
 * 平均每晚7小时4分钟，所以我基本不怎么午休。
 * 平均每月188个小时，比2018年的199小时/月，减少了11个小时，希望这些时间我都用来做有意义的事情了。
 
-![sleep-2019](assets/images/post/2020/sleep2019.jpeg)
+![sleep-2019](/assets/images/post/2020/sleep2019.jpeg)
 
  
 ## 五斗米而折腰 - 工作
@@ -34,7 +34,7 @@ tags : [时间,随笔]
 * 平均每天在办公室待8小时27分，往年都是10h+，明年希望回到正常值。
 * 从2017年开始逐年递减，减少的原因是因为出差和在外工作的增多。
 
-![work2019](assets/images/post/2020/work2019.jpeg)
+![work-2019](/assets/images/post/2020/work2019.jpeg)
 
 ## 爱的港湾 - 家
 
@@ -44,7 +44,7 @@ tags : [时间,随笔]
 * 平均每天在家5小时2分钟，今年最大的变化是这些时间基本上都是和爱人一起度过的，也算对和她约会时间减少的一种代偿吧。
 * 比以往的平均值减少了191个小时。
 
-![home2019](assets/images/post/2020/home2019.jpeg)
+![home-2019](/assets/images/post/2020/home2019.jpeg)
 
 ## 人生的车船税 - 在路上
 
@@ -55,12 +55,12 @@ tags : [时间,随笔]
 * 1150个小时，可以用来读137本书，完整备考一次CFA，相当于144个工作日。
 
 
-![transport2019](assets/images/post/2020/transport2019.jpeg)
+![transport-2019](/assets/images/post/2020/transport2019.jpeg)
 
 
-![2019](assets/images/post/2020/2019.jpeg)
-![2018](assets/images/post/2020/2018.jpeg)
-![2017](assets/images/post/2020/2017.jpeg)
+![2019](/assets/images/post/2020/2019.jpeg)
+![2018](/assets/images/post/2020/2018.jpeg)
+![2017](/assets/images/post/2020/2017.jpeg)
 
 
 
